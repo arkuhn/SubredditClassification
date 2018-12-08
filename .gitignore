@@ -1,0 +1,7 @@
+config.py
+dev/
+test/
+train
+__pycache__
+.vscode/
+APIconfig.py

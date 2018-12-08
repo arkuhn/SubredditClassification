@@ -1,0 +1,3 @@
+SUBREDDIT1='relationships'
+SUBREDDIT2='dating'
+POSTCOUNT=500
