@@ -3,6 +3,7 @@ import APIconfig
 import praw
 import json
 import sys
+import string
 import os
 
 reddit = praw.Reddit(client_id=APIconfig.CLIENT_ID, client_secret=APIconfig.CLIENT_SECRET,
@@ -22,6 +23,8 @@ def write(subreddit, counter, text):
     if not os.path.exists(directory):
         os.makedirs(directory)
     with open(directory + str(counter) + '.txt', 'w') as outfile:
+        text = ''.join(filter(lambda x: x in string.printable, text)).replace("\n", "").replace("\r", "").lower()
+        #text = text.replace("\u2018", "'").replace("\u2019", "'")
         json.dump(text, outfile)
 
 counter = 0
