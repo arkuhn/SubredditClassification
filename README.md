@@ -7,6 +7,17 @@
 2. Configure API credentials
 
    - Create an 'APIconfig.py' following the provided template with your credentials
+     ```
+     CLIENT_ID='your client id'
+
+     CLIENT_SECRET='your client secret'
+
+     USER_AGENT='your user agent string'
+
+     USERNAME='your username'
+
+     PASSWORD='your password'
+     ```
 
 3. Configure targeted subreddits
 
