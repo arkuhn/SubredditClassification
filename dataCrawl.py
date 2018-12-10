@@ -15,7 +15,7 @@ reddit = praw.Reddit(client_id=APIconfig.CLIENT_ID, client_secret=APIconfig.CLIE
 def write(subreddit, counter, text):
     if (counter <= (subredditsConfig.POSTCOUNT * .25)):
         directory = 'test/' + subreddit + '/'
-    elif (counter > (subredditsConfig.POSTCOUNT * .25) and counter <= (subredditsConfig.POSTCOUNT * .5)):
+    elif (counter > (subredditsConfig.POSTCOUNT * .25) and counter <= (subredditsConfig.POSTCOUNT * .5 + 1)):
         directory = 'dev/' + subreddit + '/'
     else:
         directory = 'train/' + subreddit + '/'
@@ -23,7 +23,7 @@ def write(subreddit, counter, text):
     if not os.path.exists(directory):
         os.makedirs(directory)
     with open(directory + str(counter) + '.txt', 'w') as outfile:
-        text = ''.join(filter(lambda x: x in string.printable, text)).replace("\n", "").replace("\r", "").lower()
+        text = ''.join(filter(lambda x: x in string.printable, text)).replace("\n", "").replace("\r", "").replace('\"', '"').lower()
         #text = text.replace("\u2018", "'").replace("\u2019", "'")
         json.dump(text, outfile)
 
