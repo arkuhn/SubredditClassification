@@ -1,3 +1,3 @@
-SUBREDDIT1='relationships'
-SUBREDDIT2='dating'
-POSTCOUNT=500
+SUBREDDIT1='TalesFromRetail'
+SUBREDDIT2='talesfromtechsupport'
+POSTCOUNT=800

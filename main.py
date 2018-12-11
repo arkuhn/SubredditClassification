@@ -34,7 +34,7 @@ def evaluate(pred, true):
 def random_forest(x_train, y_train, x_test, y_test):
     #Process
     text_clf_rf = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
-                            ('clf-rf', RandomForestRegressor(n_estimators = 500, random_state = 42))])
+                            ('clf-rf', RandomForestRegressor(n_estimators = 50))])
 
     #Train
     text_clf_rf.fit(x_train, y_train);
@@ -46,7 +46,7 @@ def random_forest(x_train, y_train, x_test, y_test):
 def svm(x_train, y_train, x_test, y_test):
     #Process
     text_clf_svm = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
-                            ('clf-svm', SGDClassifier(loss='hinge', penalty='l2',alpha=1e-3, n_iter=50000, random_state=42))])
+                            ('clf-svm', SGDClassifier(loss='hinge', penalty='l2',alpha=1e-3, n_iter=50000))])
 
     #Train
     text_clf_svm = text_clf_svm.fit(x_train, y_train)
@@ -57,20 +57,19 @@ def svm(x_train, y_train, x_test, y_test):
 
 def lregression(x_train, y_train, x_test, y_test):
     #Process
-    text_clf_svm = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
+    text_clf_lr = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
                             ('clf-lr', LogisticRegression())])
                             
     #Train
-    text_clf_lr = text_clf_svm.fit(x_train, y_train)
+    text_clf_lr = text_clf_lr.fit(x_train, y_train)
 
     #Evaluate
     y_pred = text_clf_lr.predict(x_test)
     evaluate(y_pred, y_test)
 
-def deep_lstm(x_train, y_train, x_test, y_test, input_dim):
-
-    clf = KerasRegressor(build_fn=lstm.create_model,verbose=0)
+def deep_lstm(x_train, y_train, x_test, y_test):
     #Process
+    clf = KerasRegressor(build_fn=lstm.create_model,verbose=0)
     text_clf_kr = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
                             ('clf-kr', clf)])
     
@@ -91,13 +90,11 @@ def load_data():
     y_train = train.target
     x_test = dev.data
     y_test = dev.target
-    input_dim = (np.array(x_train)).shape[0]
+    #input_dim = (np.array(x_train)).shape[0]
+    return x_train, y_train, x_test, y_test
 
-    return x_train, y_train, x_test, y_test, input_dim
 
-
-x_train, y_train, x_test, y_test, input_dim = load_data()
-
+x_train, y_train, x_test, y_test = load_data()
 print('***RANDOM FOREST***')
 random_forest(x_train, y_train, x_test, y_test)
 
@@ -108,4 +105,4 @@ print('***LINEAR REGRESSION***')
 lregression(x_train, y_train, x_test, y_test)
 
 print('***LSTM***')
-deep_lstm(x_train, y_train, x_test, y_test, input_dim)
+deep_lstm(x_train, y_train, x_test, y_test)

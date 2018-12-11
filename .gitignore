@@ -5,3 +5,4 @@ train
 __pycache__
 .vscode/
 APIconfig.py
+*.pyc

@@ -4,7 +4,14 @@
 
    `pip install -r requirements.txt`
 
-2. Configure API credentials
+2. Run a models
+
+   `python main.py`
+
+
+If you want more or different data:
+
+1. Configure API credentials
 
    - Create an 'APIconfig.py' following the provided template with your credentials
      ```
@@ -19,7 +26,7 @@
      PASSWORD='your password'
      ```
 
-3. Configure targeted subreddits
+2. Configure targeted subreddits
 
    - Modify subredditsConfig.py to desired targets
 
@@ -31,11 +38,7 @@
      POSTCOUNT= how many posts of each to pull
      ```
 
-4. Crawl data
+3. Crawl data
 
    `python dataCrawl.py`
-
-5. Run a models
-
-   `python main.py`
 

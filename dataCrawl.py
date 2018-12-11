@@ -28,11 +28,11 @@ def write(subreddit, counter, text):
         json.dump(text, outfile)
 
 counter = 0
-for submission in reddit.subreddit(subredditsConfig.SUBREDDIT1).hot(limit=subredditsConfig.POSTCOUNT):
+for submission in reddit.subreddit(subredditsConfig.SUBREDDIT1).top(limit=subredditsConfig.POSTCOUNT):
     write(subredditsConfig.SUBREDDIT1, counter, submission.selftext)
     counter +=1
 
 counter = 0
-for submission in reddit.subreddit(subredditsConfig.SUBREDDIT2).hot(limit=subredditsConfig.POSTCOUNT):
+for submission in reddit.subreddit(subredditsConfig.SUBREDDIT2).top(limit=subredditsConfig.POSTCOUNT):
     write(subredditsConfig.SUBREDDIT2, counter, submission.selftext)
     counter +=1
